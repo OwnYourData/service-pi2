@@ -1,0 +1,14 @@
+pi2:
+  image: semcon/sc-pi2:latest
+  environment:
+    RAILS_LOG_TO_STDOUT: "true"
+    SEMCON_DB: "external"
+  links:
+    - db
+  ports:
+    - 3000:3000
+  command: ["/bin/init.sh", "${INIT_TRIG}"]
+db:
+  image: postgres:12.1
+  volumes:
+    - sc-postgres_pi2:/var/lib/postgresql/data

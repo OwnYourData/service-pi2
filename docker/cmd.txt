@@ -1,0 +1,2 @@
+docker pull semcon/sc-pi2
+export INIT_TRIG=$(<init.trig); docker-compose -f docker-compose.yml up -d

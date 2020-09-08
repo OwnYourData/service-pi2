@@ -1,0 +1,3 @@
+export APP_KEY=`docker logs pi2_pi2_1 | grep APP_KEY | awk -F " " '{print $NF}'`; export APP_SECRET=`docker logs pi2_pi2_1 | grep APP_SECRET | awk -F " " '{print $NF}'`; export TOKEN=`curl -s -d grant_type=client_credentials -d client_id=$APP_KEY -d client_secret=$APP_SECRET -d scope=admin -X POST http://localhost:3000/oauth/token | jq -r '.access_token'`
+
+curl -H "Authorization: Bearer $TOKEN" http://localhost:3000/api/did/resolve/did:123
